@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/loginpage.dart';
+import 'package:flutter_application_1/statefullogin.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
@@ -22,7 +23,7 @@ class _splash2State extends State<splash2> {
   void initState() {
     Timer(Duration(seconds: 5), () {
       Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => loginpage()));
+          MaterialPageRoute(builder: (context) => StatefulLogin()));
     });
 
     super.initState();
@@ -48,12 +49,12 @@ class _splash2State extends State<splash2> {
             //   size: 250,
             //   color: Colors.red,]
             // ),
-             Image(image: NetworkImage("https://cdn3.iconfinder.com/data/icons/feather-5/24/instagram-64.png")),
+             Image(image: NetworkImage("https://cdn3.iconfinder.com/data/icons/feather-5/24/instagram-64.png"),color: Colors.orange,),
              SizedBox(height: 30,),
             Text("INSTAGRAM",
                 style: GoogleFonts.montaga(
                     fontSize: 30,
-                    color: Colors.brown,
+                    color: Colors.orange,
                     fontWeight: FontWeight.bold)),
           ],
         ),

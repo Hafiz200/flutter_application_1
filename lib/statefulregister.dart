@@ -17,6 +17,8 @@ class _statefulregister extends StatefulWidget {
 class __ststefulregisterState extends State<_statefulregister> {
   final formkey = GlobalKey<FormState>();
   String? pass;
+  bool passwordhidden = true;
+  bool cpasshidden = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -106,9 +108,22 @@ class __ststefulregisterState extends State<_statefulregister> {
                     return null;
                   }
                 },
-                obscureText: true,
+                obscureText: passwordhidden,
                 obscuringCharacter: "*",
                 decoration: InputDecoration(
+                  suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          if (passwordhidden == true) {
+                            passwordhidden = false;
+                          } else {
+                            passwordhidden = true;
+                          }
+                        });
+                      },
+                      icon: Icon(passwordhidden == true
+                          ? Icons.visibility_off_sharp
+                          : Icons.visibility)),
                   hintText: "PassWord",
                   labelText: "PassWord",
                   prefixIcon: Icon(Icons.password),
@@ -129,9 +144,22 @@ class __ststefulregisterState extends State<_statefulregister> {
                     return null;
                   }
                 },
-                obscureText: true,
+                obscureText: cpasshidden,
                 obscuringCharacter: "*",
                 decoration: InputDecoration(
+                  suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          if (cpasshidden == true) {
+                            cpasshidden = false;
+                          } else {
+                            cpasshidden = true;
+                          }
+                        });
+                      },
+                      icon: Icon(cpasshidden == true
+                          ? Icons.visibility_off_sharp
+                          : Icons.visibility)),
                   hintText: "Confirm PassWord",
                   labelText: "Confirm PassWord",
                   prefixIcon: Icon(Icons.account_circle_outlined),
@@ -147,7 +175,7 @@ class __ststefulregisterState extends State<_statefulregister> {
                 final valid = formkey.currentState!.validate();
                 if (valid) {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: ((context) =>StatefulLogin())));
+                      builder: ((context) => StatefulLogin())));
                 }
               },
               child: Text("Register"),

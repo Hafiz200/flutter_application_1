@@ -15,7 +15,8 @@ class StatefulLogin extends StatefulWidget {
 class _StatefulLoginState extends State<StatefulLogin> {
   final formkey = GlobalKey<FormState>();
   String username = "abc@gmail.com";
-  String pass="abc@123";
+  String pass = "abc@123";
+  bool passhidden = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,8 +31,7 @@ class _StatefulLoginState extends State<StatefulLogin> {
               padding: const EdgeInsets.all(10.0),
               child: TextFormField(
                 validator: (uname) {
-                  if (uname!.isEmpty || uname!=username)
-                       {
+                  if (uname!.isEmpty || uname != username) {
                     return "Invalid username";
                   } else {
                     return null;
@@ -47,6 +47,8 @@ class _StatefulLoginState extends State<StatefulLogin> {
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: TextFormField(
+                obscureText: passhidden,
+                obscuringCharacter: "*",
                 validator: (password) {
                   if (password!.isEmpty || password!.length < 6) {
                     return "password is empty/password is ivalid";
@@ -55,6 +57,19 @@ class _StatefulLoginState extends State<StatefulLogin> {
                   }
                 },
                 decoration: InputDecoration(
+                  suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          if (passhidden == true) {
+                            passhidden = false;
+                          } else {
+                            passhidden = true;
+                          }
+                        });
+                      },
+                      icon: Icon(passhidden == true
+                          ? Icons.visibility_off_sharp
+                          : Icons.visibility)),
                   border: OutlineInputBorder(),
                   hintText: " PassWord",
                   labelText: "PassWord",
