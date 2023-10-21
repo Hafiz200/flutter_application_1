@@ -9,6 +9,7 @@ void main()
 {
   runApp(MaterialApp(
     home: fiatm(),
+    debugShowCheckedModeBanner: false,
   ));
 }
 class fiatm extends StatelessWidget {
